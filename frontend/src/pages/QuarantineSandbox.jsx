@@ -1,5 +1,5 @@
 import { useState, useEffect, useCallback } from 'react';
-import { ShieldAlert, AlertOctagon, Flame, Zap, RefreshCw } from 'lucide-react';
+import { ShieldAlert, AlertOctagon, Flame, Zap, RefreshCw, Package, User } from 'lucide-react';
 import { api } from '../api/client.js';
 import EcosystemBadge from '../components/EcosystemBadge.jsx';
 
@@ -122,9 +122,10 @@ export default function QuarantineSandbox() {
                 setTargetName(t.name);
                 runSimulation(t.type, t.name);
               }}
-              style={{ fontSize: '0.7rem' }}
+              style={{ fontSize: '0.7rem', display: 'flex', alignItems: 'center', gap: '0.4rem' }}
             >
-              {t.type === 'package' ? '📦' : '👤'} {t.name}
+              {t.type === 'package' ? <Package size={14} /> : <User size={14} />}
+              <span>{t.name}</span>
             </button>
           ))}
         </div>
