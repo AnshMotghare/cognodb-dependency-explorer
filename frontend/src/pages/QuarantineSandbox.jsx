@@ -6,6 +6,7 @@ import EcosystemBadge from '../components/EcosystemBadge.jsx';
 const DEFAULT_TARGETS = [
   { type: 'package', name: 'encode-utils' },
   { type: 'package', name: 'jwt-authenticator' },
+  { type: 'package', name: 'microservice-router' },
   { type: 'package', name: 'http-fetch-lite' },
   { type: 'maintainer', name: 'Alice Developer' },
   { type: 'maintainer', name: 'Dave Infra' },
@@ -23,7 +24,7 @@ export default function QuarantineSandbox() {
       const res = await api.simulateQuarantine(type, name);
       setSimulation(res);
     } catch (err) {
-      console.error(err);
+      console.error('[Sandbox Error]', err);
     } finally {
       setLoading(false);
     }
@@ -32,6 +33,12 @@ export default function QuarantineSandbox() {
   useEffect(() => {
     runSimulation('package', 'encode-utils');
   }, [runSimulation]);
+
+  function handleSelectTarget(type, name) {
+    setTargetType(type);
+    setTargetName(name);
+    runSimulation(type, name);
+  }
 
   return (
     <div style={{ maxWidth: '1200px', margin: '0 auto', display: 'flex', flexDirection: 'column', gap: '2rem' }}>
@@ -59,7 +66,10 @@ export default function QuarantineSandbox() {
                 style={{ border: 'none', fontSize: '0.75rem', padding: '0.4rem 0.8rem' }}
                 onClick={() => {
                   setTargetType('package');
-                  setTargetName('encode-utils');
+                  if (targetType !== 'package') {
+                    setTargetName('encode-utils');
+                    runSimulation('package', 'encode-utils');
+                  }
                 }}
               >
                 Package Strike
@@ -70,7 +80,10 @@ export default function QuarantineSandbox() {
                 style={{ border: 'none', fontSize: '0.75rem', padding: '0.4rem 0.8rem' }}
                 onClick={() => {
                   setTargetType('maintainer');
-                  setTargetName('Alice Developer');
+                  if (targetType !== 'maintainer') {
+                    setTargetName('Alice Developer');
+                    runSimulation('maintainer', 'Alice Developer');
+                  }
                 }}
               >
                 Maintainer Compromise
@@ -81,8 +94,14 @@ export default function QuarantineSandbox() {
               type="text"
               value={targetName}
               onChange={(e) => setTargetName(e.target.value)}
+              onKeyDown={(e) => {
+                if (e.key === 'Enter') {
+                  e.preventDefault();
+                  runSimulation(targetType, targetName);
+                }
+              }}
               aria-label="Simulation target name"
-              placeholder={targetType === 'package' ? 'Enter package name...' : 'Enter maintainer name...'}
+              placeholder={targetType === 'package' ? 'Enter package name (e.g. encode-utils)...' : 'Enter maintainer name...'}
               style={{
                 fontFamily: 'var(--font-mono)',
                 fontSize: '0.85rem',
@@ -90,7 +109,7 @@ export default function QuarantineSandbox() {
                 border: '1px solid var(--color-primary)',
                 background: 'transparent',
                 outline: 'none',
-                minWidth: '220px',
+                minWidth: '240px',
               }}
             />
           </div>
@@ -98,36 +117,45 @@ export default function QuarantineSandbox() {
           <button
             type="button"
             className="btn-ink btn-ink-primary"
-            onClick={() => runSimulation()}
+            onClick={() => runSimulation(targetType, targetName)}
             disabled={loading}
             style={{ display: 'flex', alignItems: 'center', gap: '0.4rem', borderColor: 'var(--color-error)' }}
           >
             {loading ? <RefreshCw size={15} className="animate-spin" /> : <Flame size={16} />}
-            <span>Simulate Disruption</span>
+            <span>{loading ? 'Calculating Cascade...' : 'Simulate Disruption'}</span>
           </button>
         </div>
 
-        {/* Quick presets */}
-        <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginTop: '1rem', flexWrap: 'wrap' }}>
+        {/* Quick presets with Active Highlight State */}
+        <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginTop: '1.25rem', flexWrap: 'wrap' }}>
           <span style={{ fontSize: '0.7rem', color: 'var(--color-outline)', textTransform: 'uppercase' }}>
             Simulation Scenarios:
           </span>
-          {DEFAULT_TARGETS.map((t) => (
-            <button
-              key={`${t.type}-${t.name}`}
-              type="button"
-              className="ink-chip"
-              onClick={() => {
-                setTargetType(t.type);
-                setTargetName(t.name);
-                runSimulation(t.type, t.name);
-              }}
-              style={{ fontSize: '0.7rem', display: 'flex', alignItems: 'center', gap: '0.4rem' }}
-            >
-              {t.type === 'package' ? <Package size={14} /> : <User size={14} />}
-              <span>{t.name}</span>
-            </button>
-          ))}
+          {DEFAULT_TARGETS.map((t) => {
+            const isSelected = targetType === t.type && targetName.toLowerCase() === t.name.toLowerCase();
+            return (
+              <button
+                key={`${t.type}-${t.name}`}
+                type="button"
+                className={`ink-chip ${isSelected ? 'btn-ink-primary' : ''}`}
+                onClick={() => handleSelectTarget(t.type, t.name)}
+                style={{
+                  fontSize: '0.7rem',
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: '0.4rem',
+                  backgroundColor: isSelected ? 'var(--color-primary)' : 'var(--color-surface-lowest)',
+                  color: isSelected ? '#ffffff' : 'var(--color-primary)',
+                  borderColor: isSelected ? 'var(--color-primary)' : 'var(--color-outline)',
+                  fontWeight: isSelected ? 700 : 500,
+                }}
+              >
+                {t.type === 'package' ? <Package size={14} /> : <User size={14} />}
+                <span>{t.name}</span>
+                {isSelected && <span style={{ fontSize: '0.65rem', marginLeft: '0.2rem' }}>● ACTIVE</span>}
+              </button>
+            );
+          })}
         </div>
       </div>
 
@@ -177,7 +205,7 @@ export default function QuarantineSandbox() {
                 Cascading Downstream Casualties ({simulation.severedCount})
               </h3>
               <span style={{ fontSize: '0.7rem', color: 'var(--color-outline)' }}>
-                UPSTREAM IMPACT TRACE
+                UPSTREAM IMPACT TRACE FOR {simulation.targetName.toUpperCase()}
               </span>
             </div>
 
