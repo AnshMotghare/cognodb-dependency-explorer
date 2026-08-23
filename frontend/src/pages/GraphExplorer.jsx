@@ -1,6 +1,6 @@
-import { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect, useCallback, useMemo } from 'react';
 import { Link } from 'react-router-dom';
-import { MousePointerClick } from 'lucide-react';
+import { MousePointerClick, Network, GitFork, Search } from 'lucide-react';
 import { api } from '../api/client.js';
 import GraphVisualizer from '../components/GraphVisualizer.jsx';
 import LoadingState from '../components/LoadingState.jsx';
@@ -34,14 +34,35 @@ export default function GraphExplorer() {
     fetchFullGraph();
   }, [fetchFullGraph]);
 
-  // Find connected links for the selected node
-  const connectedLinks = selectedNode && graphData?.links
-    ? graphData.links.filter((l) => {
-        const s = typeof l.source === 'object' ? l.source.id : l.source;
-        const t = typeof l.target === 'object' ? l.target.id : l.target;
-        return s === selectedNode.id || t === selectedNode.id;
-      })
-    : [];
+  // Find and deduplicate connected links for the selected node
+  const uniqueConnectedLinks = useMemo(() => {
+    if (!selectedNode || !graphData?.links) return [];
+
+    const seen = new Set();
+    const result = [];
+
+    for (const l of graphData.links) {
+      const s = typeof l.source === 'object' ? l.source.id : l.source;
+      const t = typeof l.target === 'object' ? l.target.id : l.target;
+
+      if (s === selectedNode.id || t === selectedNode.id) {
+        const uniqueRelKey = `${s}-${l.label}-${t}`;
+        if (!seen.has(uniqueRelKey)) {
+          seen.add(uniqueRelKey);
+          const targetName = s === selectedNode.id ? t : s;
+          const direction = s === selectedNode.id ? '➔' : '⬅';
+          result.push({
+            key: uniqueRelKey,
+            label: l.label,
+            targetName,
+            direction,
+          });
+        }
+      }
+    }
+
+    return result;
+  }, [selectedNode, graphData]);
 
   return (
     <div className="page-container">
@@ -60,7 +81,7 @@ export default function GraphExplorer() {
       >
         <div>
           <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', marginBottom: '0.25rem' }}>
-            <span className="material-symbols-outlined" style={{ fontSize: '28px', color: 'var(--color-primary)' }}>hub</span>
+            <Network size={28} style={{ color: 'var(--color-primary)' }} />
             <h1 style={{ fontFamily: 'var(--font-serif)', fontSize: '2.5rem', fontWeight: 600, color: 'var(--color-primary)', letterSpacing: '-0.02em' }}>
               Global Topology Network
             </h1>
@@ -94,7 +115,7 @@ export default function GraphExplorer() {
       <section className="ink-card" style={{ padding: 0, marginBottom: '2rem' }}>
         <div className="ink-card-header" style={{ margin: 0, padding: '1rem 1.5rem', borderBottom: '1px solid var(--color-primary)' }}>
           <h3 className="ink-card-title">
-            <span className="material-symbols-outlined">account_tree</span>
+            <GitFork size={18} />
             Ecosystem Topology Explorer
           </h3>
           <div style={{ display: 'flex', alignItems: 'center', gap: '1rem', fontSize: '0.75rem', color: 'var(--color-outline)' }}>
@@ -138,7 +159,7 @@ export default function GraphExplorer() {
 
         <div className="ink-card-header">
           <h3 className="ink-card-title">
-            <span className="material-symbols-outlined">manage_search</span>
+            <Search size={18} />
             Node Inspector
           </h3>
           <span style={{ fontSize: '0.7rem', color: 'var(--color-outline)' }}>
@@ -187,30 +208,23 @@ export default function GraphExplorer() {
             {/* Connected Relationships */}
             <div>
               <div style={{ fontSize: '0.75rem', textTransform: 'uppercase', color: 'var(--color-outline)', marginBottom: '0.5rem' }}>
-                Connected Relationships ({connectedLinks.length})
+                Connected Relationships ({uniqueConnectedLinks.length})
               </div>
               <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.5rem' }}>
-                {connectedLinks.map((l) => {
-                  const s = typeof l.source === 'object' ? l.source.id : l.source;
-                  const t = typeof l.target === 'object' ? l.target.id : l.target;
-                  const targetName = s === selectedNode.id ? t : s;
-                  const direction = s === selectedNode.id ? '➔' : '⬅';
-
-                  return (
-                    <span
-                      key={`${s}-${l.label}-${t}`}
-                      style={{
-                        fontFamily: 'var(--font-mono)',
-                        fontSize: '0.75rem',
-                        border: '1px solid var(--color-outline-variant)',
-                        padding: '0.25rem 0.5rem',
-                        background: 'var(--color-surface-container)',
-                      }}
-                    >
-                      {direction} {l.label}: <strong>{targetName}</strong>
-                    </span>
-                  );
-                })}
+                {uniqueConnectedLinks.map((item) => (
+                  <span
+                    key={item.key}
+                    style={{
+                      fontFamily: 'var(--font-mono)',
+                      fontSize: '0.75rem',
+                      border: '1px solid var(--color-outline-variant)',
+                      padding: '0.25rem 0.5rem',
+                      background: 'var(--color-surface-container)',
+                    }}
+                  >
+                    {item.direction} {item.label}: <strong>{item.targetName}</strong>
+                  </span>
+                ))}
               </div>
             </div>
           </div>
