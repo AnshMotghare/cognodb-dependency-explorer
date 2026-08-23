@@ -1,0 +1,1170 @@
+[
+  {
+    "name": "encode-utils",
+    "ecosystem": "npm",
+    "versions": [
+      {
+        "version": "3.0.1",
+        "releaseDate": "2024-11-15",
+        "dependsOn": ["buffer-safe@0.9.2"],
+        "maintainer": "bob.builder@oss.org",
+        "license": "Apache-2.0",
+        "vulnerabilities": [
+          {
+            "cveId": "CVE-2025-10234",
+            "severity": "CRITICAL",
+            "description": "Improper input sanitization in base64/hex decoder allows remote code execution via malformed buffer payload."
+          }
+        ]
+      },
+      {
+        "version": "3.1.0",
+        "releaseDate": "2025-01-20",
+        "dependsOn": ["buffer-safe@1.0.0"],
+        "maintainer": "bob.builder@oss.org",
+        "license": "Apache-2.0",
+        "vulnerabilities": []
+      }
+    ]
+  },
+  {
+    "name": "buffer-safe",
+    "ecosystem": "npm",
+    "versions": [
+      {
+        "version": "0.9.2",
+        "releaseDate": "2023-08-10",
+        "dependsOn": [],
+        "maintainer": "carol.crypto@secops.dev",
+        "license": "MIT",
+        "vulnerabilities": [
+          {
+            "cveId": "CVE-2024-38902",
+            "severity": "HIGH",
+            "description": "Out-of-bounds heap read when allocating uninitialized buffer slices."
+          }
+        ]
+      },
+      {
+        "version": "1.0.0",
+        "releaseDate": "2024-09-01",
+        "dependsOn": [],
+        "maintainer": "carol.crypto@secops.dev",
+        "license": "MIT",
+        "vulnerabilities": []
+      }
+    ]
+  },
+  {
+    "name": "url-parse-mini",
+    "ecosystem": "npm",
+    "versions": [
+      {
+        "version": "1.4.0",
+        "releaseDate": "2024-12-01",
+        "dependsOn": ["encode-utils@3.0.1", "string-trim-regex@1.2.0"],
+        "maintainer": "bob.builder@oss.org",
+        "license": "MIT",
+        "vulnerabilities": []
+      }
+    ]
+  },
+  {
+    "name": "string-trim-regex",
+    "ecosystem": "npm",
+    "versions": [
+      {
+        "version": "1.2.0",
+        "releaseDate": "2024-04-10",
+        "dependsOn": [],
+        "maintainer": "alice.dev@security.io",
+        "license": "MIT",
+        "vulnerabilities": [
+          {
+            "cveId": "CVE-2024-45120",
+            "severity": "HIGH",
+            "description": "Regular Expression Denial of Service (ReDoS) and prototype pollution via unsafe recursive sanitization."
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "http-fetch-lite",
+    "ecosystem": "npm",
+    "versions": [
+      {
+        "version": "2.1.0",
+        "releaseDate": "2025-01-05",
+        "dependsOn": ["url-parse-mini@1.4.0", "buffer-safe@0.9.2", "event-emitter-fast@2.0.1"],
+        "maintainer": "alice.dev@security.io",
+        "license": "MIT",
+        "vulnerabilities": [
+          {
+            "cveId": "CVE-2024-77821",
+            "severity": "MEDIUM",
+            "description": "Server-Side Request Forgery (SSRF) bypass when redirecting to internal link-local addresses."
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "crypto-primitives",
+    "ecosystem": "npm",
+    "versions": [
+      {
+        "version": "2.0.0",
+        "releaseDate": "2024-05-18",
+        "dependsOn": ["buffer-safe@0.9.2"],
+        "maintainer": "carol.crypto@secops.dev",
+        "license": "BSD-3-Clause",
+        "vulnerabilities": [
+          {
+            "cveId": "CVE-2025-44012",
+            "severity": "HIGH",
+            "description": "Timing side-channel attack during HMAC-SHA256 signature verification allows MAC forgery."
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "jwt-authenticator",
+    "ecosystem": "npm",
+    "versions": [
+      {
+        "version": "3.4.0",
+        "releaseDate": "2024-10-12",
+        "dependsOn": ["crypto-primitives@2.0.0", "encode-utils@3.0.1", "json-schema-validator@2.2.0"],
+        "maintainer": "frank.security@infosec.com",
+        "license": "MIT",
+        "vulnerabilities": [
+          {
+            "cveId": "CVE-2025-11093",
+            "severity": "CRITICAL",
+            "description": "JWT algorithm confusion flaw allows signature verification bypass with 'none' or asymmetric public key substitution."
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "json-schema-validator",
+    "ecosystem": "npm",
+    "versions": [
+      {
+        "version": "2.2.0",
+        "releaseDate": "2024-07-22",
+        "dependsOn": ["string-trim-regex@1.2.0", "fast-deep-equal@3.1.3"],
+        "maintainer": "bob.builder@oss.org",
+        "license": "MIT",
+        "vulnerabilities": []
+      }
+    ]
+  },
+  {
+    "name": "fast-deep-equal",
+    "ecosystem": "npm",
+    "versions": [
+      {
+        "version": "3.1.3",
+        "releaseDate": "2023-11-01",
+        "dependsOn": [],
+        "maintainer": "alice.dev@security.io",
+        "license": "MIT",
+        "vulnerabilities": []
+      }
+    ]
+  },
+  {
+    "name": "event-emitter-fast",
+    "ecosystem": "npm",
+    "versions": [
+      {
+        "version": "2.0.1",
+        "releaseDate": "2024-02-14",
+        "dependsOn": [],
+        "maintainer": "ivan.perf@fastops.net",
+        "license": "ISC",
+        "vulnerabilities": [
+          {
+            "cveId": "CVE-2024-99812",
+            "severity": "LOW",
+            "description": "Memory leak on unbounded listener registrations in high-throughput stream handlers."
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "yaml-config-loader",
+    "ecosystem": "npm",
+    "versions": [
+      {
+        "version": "1.8.0",
+        "releaseDate": "2024-06-30",
+        "dependsOn": ["string-trim-regex@1.2.0", "path-resolver-core@1.1.0"],
+        "maintainer": "dave.maintainer@npm.org",
+        "license": "MIT",
+        "vulnerabilities": [
+          {
+            "cveId": "CVE-2024-50124",
+            "severity": "HIGH",
+            "description": "Uncontrolled entity expansion in YAML anchor parser causes process crash (billion laughs attack)."
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "path-resolver-core",
+    "ecosystem": "npm",
+    "versions": [
+      {
+        "version": "1.1.0",
+        "releaseDate": "2024-03-15",
+        "dependsOn": [],
+        "maintainer": "alice.dev@security.io",
+        "license": "MIT",
+        "vulnerabilities": [
+          {
+            "cveId": "CVE-2025-63219",
+            "severity": "MEDIUM",
+            "description": "Directory traversal vulnerability via un-normalized relative path prefixes."
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "multipart-form-parser",
+    "ecosystem": "npm",
+    "versions": [
+      {
+        "version": "2.3.0",
+        "releaseDate": "2024-09-18",
+        "dependsOn": ["buffer-safe@0.9.2", "path-resolver-core@1.1.0", "event-emitter-fast@2.0.1"],
+        "maintainer": "dave.maintainer@npm.org",
+        "license": "Apache-2.0",
+        "vulnerabilities": [
+          {
+            "cveId": "CVE-2025-01823",
+            "severity": "HIGH",
+            "description": "Arbitrary temporary file creation outside upload sandbox due to unvalidated boundary tokens."
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "oauth-client-core",
+    "ecosystem": "npm",
+    "versions": [
+      {
+        "version": "2.1.5",
+        "releaseDate": "2024-11-28",
+        "dependsOn": ["http-fetch-lite@2.1.0", "jwt-authenticator@3.4.0", "crypto-primitives@2.0.0"],
+        "maintainer": "frank.security@infosec.com",
+        "license": "MIT",
+        "vulnerabilities": []
+      }
+    ]
+  },
+  {
+    "name": "cookie-parser-lite",
+    "ecosystem": "npm",
+    "versions": [
+      {
+        "version": "1.3.1",
+        "releaseDate": "2024-01-10",
+        "dependsOn": ["encode-utils@3.0.1", "crypto-primitives@2.0.0"],
+        "maintainer": "alice.dev@security.io",
+        "license": "MIT",
+        "vulnerabilities": []
+      }
+    ]
+  },
+  {
+    "name": "rate-limiter-redis",
+    "ecosystem": "npm",
+    "versions": [
+      {
+        "version": "3.0.2",
+        "releaseDate": "2024-08-25",
+        "dependsOn": ["event-emitter-fast@2.0.1", "crypto-primitives@2.0.0"],
+        "maintainer": "ivan.perf@fastops.net",
+        "license": "MIT",
+        "vulnerabilities": []
+      }
+    ]
+  },
+  {
+    "name": "logger-winston-mini",
+    "ecosystem": "npm",
+    "versions": [
+      {
+        "version": "1.5.0",
+        "releaseDate": "2024-04-05",
+        "dependsOn": ["string-trim-regex@1.2.0", "fast-deep-equal@3.1.3"],
+        "maintainer": "dave.maintainer@npm.org",
+        "license": "MIT",
+        "vulnerabilities": []
+      }
+    ]
+  },
+  {
+    "name": "query-builder-sql",
+    "ecosystem": "npm",
+    "versions": [
+      {
+        "version": "4.1.0",
+        "releaseDate": "2024-10-01",
+        "dependsOn": ["string-trim-regex@1.2.0", "fast-deep-equal@3.1.3"],
+        "maintainer": "judy.db@datatech.com",
+        "license": "Apache-2.0",
+        "vulnerabilities": [
+          {
+            "cveId": "CVE-2025-22891",
+            "severity": "CRITICAL",
+            "description": "SQL Injection vulnerability in dynamic identifier quoting and raw clause builder."
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "orm-adapter-node",
+    "ecosystem": "npm",
+    "versions": [
+      {
+        "version": "2.4.0",
+        "releaseDate": "2024-11-10",
+        "dependsOn": ["query-builder-sql@4.1.0", "logger-winston-mini@1.5.0", "event-emitter-fast@2.0.1"],
+        "maintainer": "judy.db@datatech.com",
+        "license": "Apache-2.0",
+        "vulnerabilities": []
+      }
+    ]
+  },
+  {
+    "name": "auth-middleware",
+    "ecosystem": "npm",
+    "versions": [
+      {
+        "version": "2.2.0",
+        "releaseDate": "2025-01-08",
+        "dependsOn": ["jwt-authenticator@3.4.0", "cookie-parser-lite@1.3.1", "rate-limiter-redis@3.0.2"],
+        "maintainer": "frank.security@infosec.com",
+        "license": "MIT",
+        "vulnerabilities": []
+      }
+    ]
+  },
+  {
+    "name": "microservice-router",
+    "ecosystem": "npm",
+    "versions": [
+      {
+        "version": "3.1.0",
+        "releaseDate": "2025-01-12",
+        "dependsOn": ["http-fetch-lite@2.1.0", "auth-middleware@2.2.0", "yaml-config-loader@1.8.0", "multipart-form-parser@2.3.0"],
+        "maintainer": "eve.infra@cloud.io",
+        "license": "MIT",
+        "vulnerabilities": []
+      }
+    ]
+  },
+  {
+    "name": "enterprise-api-gateway",
+    "ecosystem": "npm",
+    "versions": [
+      {
+        "version": "5.0.0",
+        "releaseDate": "2025-01-25",
+        "dependsOn": ["microservice-router@3.1.0", "oauth-client-core@2.1.5", "orm-adapter-node@2.4.0"],
+        "maintainer": "eve.infra@cloud.io",
+        "license": "Apache-2.0",
+        "vulnerabilities": []
+      }
+    ]
+  },
+  {
+    "name": "payment-checkout-service",
+    "ecosystem": "npm",
+    "versions": [
+      {
+        "version": "1.9.0",
+        "releaseDate": "2025-02-01",
+        "dependsOn": ["auth-middleware@2.2.0", "orm-adapter-node@2.4.0", "crypto-primitives@2.0.0", "http-fetch-lite@2.1.0"],
+        "maintainer": "alice.dev@security.io",
+        "license": "Proprietary",
+        "vulnerabilities": []
+      }
+    ]
+  },
+  {
+    "name": "admin-dashboard-api",
+    "ecosystem": "npm",
+    "versions": [
+      {
+        "version": "2.0.4",
+        "releaseDate": "2025-01-18",
+        "dependsOn": ["microservice-router@3.1.0", "json-schema-validator@2.2.0", "orm-adapter-node@2.4.0"],
+        "maintainer": "dave.maintainer@npm.org",
+        "license": "MIT",
+        "vulnerabilities": []
+      }
+    ]
+  },
+  {
+    "name": "ai-agent-orchestrator",
+    "ecosystem": "npm",
+    "versions": [
+      {
+        "version": "1.0.2",
+        "releaseDate": "2025-02-10",
+        "dependsOn": ["http-fetch-lite@2.1.0", "jwt-authenticator@3.4.0", "yaml-config-loader@1.8.0", "logger-winston-mini@1.5.0"],
+        "maintainer": "alice.dev@security.io",
+        "license": "MIT",
+        "vulnerabilities": []
+      }
+    ]
+  },
+  {
+    "name": "cloud-storage-sdk",
+    "ecosystem": "npm",
+    "versions": [
+      {
+        "version": "3.5.0",
+        "releaseDate": "2024-12-20",
+        "dependsOn": ["http-fetch-lite@2.1.0", "crypto-primitives@2.0.0", "yaml-config-loader@1.8.0"],
+        "maintainer": "eve.infra@cloud.io",
+        "license": "Apache-2.0",
+        "vulnerabilities": []
+      }
+    ]
+  },
+  {
+    "name": "docker-compose-runner",
+    "ecosystem": "npm",
+    "versions": [
+      {
+        "version": "1.4.0",
+        "releaseDate": "2024-10-15",
+        "dependsOn": ["yaml-config-loader@1.8.0", "path-resolver-core@1.1.0"],
+        "maintainer": "eve.infra@cloud.io",
+        "license": "MIT",
+        "vulnerabilities": []
+      }
+    ]
+  },
+  {
+    "name": "data-pipeline-worker",
+    "ecosystem": "npm",
+    "versions": [
+      {
+        "version": "2.1.0",
+        "releaseDate": "2024-12-05",
+        "dependsOn": ["orm-adapter-node@2.4.0", "event-emitter-fast@2.0.1", "logger-winston-mini@1.5.0"],
+        "maintainer": "judy.db@datatech.com",
+        "license": "Apache-2.0",
+        "vulnerabilities": []
+      }
+    ]
+  },
+  {
+    "name": "search-indexer-service",
+    "ecosystem": "npm",
+    "versions": [
+      {
+        "version": "1.3.0",
+        "releaseDate": "2024-11-20",
+        "dependsOn": ["http-fetch-lite@2.1.0", "string-trim-regex@1.2.0", "fast-deep-equal@3.1.3"],
+        "maintainer": "ivan.perf@fastops.net",
+        "license": "MIT",
+        "vulnerabilities": []
+      }
+    ]
+  },
+  {
+    "name": "next-ssr-server",
+    "ecosystem": "npm",
+    "versions": [
+      {
+        "version": "4.2.0",
+        "releaseDate": "2025-01-30",
+        "dependsOn": ["auth-middleware@2.2.0", "http-fetch-lite@2.1.0", "cookie-parser-lite@1.3.1"],
+        "maintainer": "alice.dev@security.io",
+        "license": "MIT",
+        "vulnerabilities": []
+      }
+    ]
+  },
+  {
+    "name": "color-formatter-cli",
+    "ecosystem": "npm",
+    "versions": [
+      {
+        "version": "1.1.0",
+        "releaseDate": "2023-09-12",
+        "dependsOn": ["string-trim-regex@1.2.0"],
+        "maintainer": "dave.maintainer@npm.org",
+        "license": "MIT",
+        "vulnerabilities": []
+      }
+    ]
+  },
+  {
+    "name": "dev-tool-cli",
+    "ecosystem": "npm",
+    "versions": [
+      {
+        "version": "2.0.0",
+        "releaseDate": "2024-08-01",
+        "dependsOn": ["color-formatter-cli@1.1.0", "yaml-config-loader@1.8.0", "path-resolver-core@1.1.0"],
+        "maintainer": "dave.maintainer@npm.org",
+        "license": "MIT",
+        "vulnerabilities": []
+      }
+    ]
+  },
+  {
+    "name": "graphql-schema-builder",
+    "ecosystem": "npm",
+    "versions": [
+      {
+        "version": "3.0.0",
+        "releaseDate": "2024-10-25",
+        "dependsOn": ["json-schema-validator@2.2.0", "fast-deep-equal@3.1.3"],
+        "maintainer": "bob.builder@oss.org",
+        "license": "MIT",
+        "vulnerabilities": []
+      }
+    ]
+  },
+  {
+    "name": "analytics-collector",
+    "ecosystem": "npm",
+    "versions": [
+      {
+        "version": "1.7.0",
+        "releaseDate": "2024-12-14",
+        "dependsOn": ["http-fetch-lite@2.1.0", "cookie-parser-lite@1.3.1", "crypto-primitives@2.0.0"],
+        "maintainer": "alice.dev@security.io",
+        "license": "Apache-2.0",
+        "vulnerabilities": []
+      }
+    ]
+  },
+  {
+    "name": "monitoring-agent-daemon",
+    "ecosystem": "npm",
+    "versions": [
+      {
+        "version": "2.2.1",
+        "releaseDate": "2025-01-02",
+        "dependsOn": ["rate-limiter-redis@3.0.2", "logger-winston-mini@1.5.0", "http-fetch-lite@2.1.0"],
+        "maintainer": "eve.infra@cloud.io",
+        "license": "Apache-2.0",
+        "vulnerabilities": []
+      }
+    ]
+  },
+  {
+    "name": "websocket-stream-sync",
+    "ecosystem": "npm",
+    "versions": [
+      {
+        "version": "1.5.2",
+        "releaseDate": "2024-09-08",
+        "dependsOn": ["buffer-safe@0.9.2", "event-emitter-fast@2.0.1"],
+        "maintainer": "ivan.perf@fastops.net",
+        "license": "MIT",
+        "vulnerabilities": []
+      }
+    ]
+  },
+  {
+    "name": "realtime-chat-server",
+    "ecosystem": "npm",
+    "versions": [
+      {
+        "version": "2.0.1",
+        "releaseDate": "2025-01-15",
+        "dependsOn": ["websocket-stream-sync@1.5.2", "jwt-authenticator@3.4.0", "rate-limiter-redis@3.0.2"],
+        "maintainer": "frank.security@infosec.com",
+        "license": "MIT",
+        "vulnerabilities": []
+      }
+    ]
+  },
+  {
+    "name": "cron-scheduler-job",
+    "ecosystem": "npm",
+    "versions": [
+      {
+        "version": "1.2.4",
+        "releaseDate": "2024-06-11",
+        "dependsOn": ["event-emitter-fast@2.0.1", "logger-winston-mini@1.5.0"],
+        "maintainer": "dave.maintainer@npm.org",
+        "license": "MIT",
+        "vulnerabilities": []
+      }
+    ]
+  },
+  {
+    "name": "notification-dispatcher",
+    "ecosystem": "npm",
+    "versions": [
+      {
+        "version": "3.1.1",
+        "releaseDate": "2024-11-04",
+        "dependsOn": ["http-fetch-lite@2.1.0", "cron-scheduler-job@1.2.4", "yaml-config-loader@1.8.0"],
+        "maintainer": "alice.dev@security.io",
+        "license": "MIT",
+        "vulnerabilities": []
+      }
+    ]
+  },
+  {
+    "name": "session-store-redis",
+    "ecosystem": "npm",
+    "versions": [
+      {
+        "version": "2.0.0",
+        "releaseDate": "2024-07-19",
+        "dependsOn": ["crypto-primitives@2.0.0", "fast-deep-equal@3.1.3"],
+        "maintainer": "ivan.perf@fastops.net",
+        "license": "MIT",
+        "vulnerabilities": []
+      }
+    ]
+  },
+  {
+    "name": "pydantic-v2-core",
+    "ecosystem": "pypi",
+    "versions": [
+      {
+        "version": "2.6.0",
+        "releaseDate": "2024-10-18",
+        "dependsOn": ["cryptography-py-native@4.1.0"],
+        "maintainer": "grace.coder@python.org",
+        "license": "MIT",
+        "vulnerabilities": []
+      }
+    ]
+  },
+  {
+    "name": "cryptography-py-native",
+    "ecosystem": "pypi",
+    "versions": [
+      {
+        "version": "4.1.0",
+        "releaseDate": "2024-05-12",
+        "dependsOn": [],
+        "maintainer": "carol.crypto@secops.dev",
+        "license": "Apache-2.0",
+        "vulnerabilities": [
+          {
+            "cveId": "CVE-2024-21893",
+            "severity": "CRITICAL",
+            "description": "Integer overflow in AES-GCM tag verification causes decrypt memory corruption."
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "fastapi-jwt-auth",
+    "ecosystem": "pypi",
+    "versions": [
+      {
+        "version": "1.8.0",
+        "releaseDate": "2024-11-05",
+        "dependsOn": ["pydantic-v2-core@2.6.0", "cryptography-py-native@4.1.0"],
+        "maintainer": "grace.coder@python.org",
+        "license": "MIT",
+        "vulnerabilities": [
+          {
+            "cveId": "CVE-2025-33411",
+            "severity": "HIGH",
+            "description": "Improper token expiry enforcement when handling leap-second clock shifts."
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "requests-async-client",
+    "ecosystem": "pypi",
+    "versions": [
+      {
+        "version": "3.2.0",
+        "releaseDate": "2024-09-14",
+        "dependsOn": ["cryptography-py-native@4.1.0"],
+        "maintainer": "grace.coder@python.org",
+        "license": "Apache-2.0",
+        "vulnerabilities": []
+      }
+    ]
+  },
+  {
+    "name": "sqlalchemy-graph-orm",
+    "ecosystem": "pypi",
+    "versions": [
+      {
+        "version": "2.1.2",
+        "releaseDate": "2024-08-30",
+        "dependsOn": ["pydantic-v2-core@2.6.0"],
+        "maintainer": "judy.db@datatech.com",
+        "license": "MIT",
+        "vulnerabilities": []
+      }
+    ]
+  },
+  {
+    "name": "uvicorn-worker-pool",
+    "ecosystem": "pypi",
+    "versions": [
+      {
+        "version": "1.4.1",
+        "releaseDate": "2024-07-02",
+        "dependsOn": ["requests-async-client@3.2.0"],
+        "maintainer": "grace.coder@python.org",
+        "license": "BSD-3-Clause",
+        "vulnerabilities": []
+      }
+    ]
+  },
+  {
+    "name": "celery-task-runner",
+    "ecosystem": "pypi",
+    "versions": [
+      {
+        "version": "5.3.0",
+        "releaseDate": "2024-10-22",
+        "dependsOn": ["sqlalchemy-graph-orm@2.1.2", "requests-async-client@3.2.0"],
+        "maintainer": "eve.infra@cloud.io",
+        "license": "BSD-3-Clause",
+        "vulnerabilities": []
+      }
+    ]
+  },
+  {
+    "name": "numpy-fast-ops",
+    "ecosystem": "pypi",
+    "versions": [
+      {
+        "version": "1.26.4",
+        "releaseDate": "2024-03-20",
+        "dependsOn": [],
+        "maintainer": "ivan.perf@fastops.net",
+        "license": "BSD-3-Clause",
+        "vulnerabilities": []
+      }
+    ]
+  },
+  {
+    "name": "pandas-data-cleaner",
+    "ecosystem": "pypi",
+    "versions": [
+      {
+        "version": "2.2.0",
+        "releaseDate": "2024-06-18",
+        "dependsOn": ["numpy-fast-ops@1.26.4"],
+        "maintainer": "grace.coder@python.org",
+        "license": "BSD-3-Clause",
+        "vulnerabilities": []
+      }
+    ]
+  },
+  {
+    "name": "torch-inference-lite",
+    "ecosystem": "pypi",
+    "versions": [
+      {
+        "version": "2.3.0",
+        "releaseDate": "2024-12-01",
+        "dependsOn": ["numpy-fast-ops@1.26.4", "pydantic-v2-core@2.6.0"],
+        "maintainer": "carol.crypto@secops.dev",
+        "license": "BSD-3-Clause",
+        "vulnerabilities": [
+          {
+            "cveId": "CVE-2025-88910",
+            "severity": "CRITICAL",
+            "description": "Unsafe pickle deserialization in pre-trained model weights loader triggers arbitrary command execution."
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "ml-model-serving-api",
+    "ecosystem": "pypi",
+    "versions": [
+      {
+        "version": "1.5.0",
+        "releaseDate": "2025-01-14",
+        "dependsOn": ["torch-inference-lite@2.3.0", "fastapi-jwt-auth@1.8.0", "uvicorn-worker-pool@1.4.1"],
+        "maintainer": "grace.coder@python.org",
+        "license": "MIT",
+        "vulnerabilities": []
+      }
+    ]
+  },
+  {
+    "name": "jinja-template-engine",
+    "ecosystem": "pypi",
+    "versions": [
+      {
+        "version": "3.1.4",
+        "releaseDate": "2024-04-29",
+        "dependsOn": [],
+        "maintainer": "bob.builder@oss.org",
+        "license": "BSD-3-Clause",
+        "vulnerabilities": [
+          {
+            "cveId": "CVE-2024-34064",
+            "severity": "MEDIUM",
+            "description": "Server-Side Template Injection (SSTI) sandbox escape via custom filter attributes."
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "django-web-portal",
+    "ecosystem": "pypi",
+    "versions": [
+      {
+        "version": "5.0.3",
+        "releaseDate": "2025-01-10",
+        "dependsOn": ["jinja-template-engine@3.1.4", "sqlalchemy-graph-orm@2.1.2", "fastapi-jwt-auth@1.8.0"],
+        "maintainer": "grace.coder@python.org",
+        "license": "BSD-3-Clause",
+        "vulnerabilities": []
+      }
+    ]
+  },
+  {
+    "name": "pytest-benchmark-runner",
+    "ecosystem": "pypi",
+    "versions": [
+      {
+        "version": "4.0.0",
+        "releaseDate": "2024-05-15",
+        "dependsOn": ["numpy-fast-ops@1.26.4"],
+        "maintainer": "dave.maintainer@npm.org",
+        "license": "MIT",
+        "vulnerabilities": []
+      }
+    ]
+  },
+  {
+    "name": "ring-crypto-safe",
+    "ecosystem": "crates",
+    "versions": [
+      {
+        "version": "0.17.5",
+        "releaseDate": "2024-08-11",
+        "dependsOn": [],
+        "maintainer": "heidi.rust@crates.io",
+        "license": "ISC",
+        "vulnerabilities": []
+      }
+    ]
+  },
+  {
+    "name": "tokio-async-runtime",
+    "ecosystem": "crates",
+    "versions": [
+      {
+        "version": "1.38.0",
+        "releaseDate": "2024-10-02",
+        "dependsOn": [],
+        "maintainer": "heidi.rust@crates.io",
+        "license": "MIT",
+        "vulnerabilities": []
+      }
+    ]
+  },
+  {
+    "name": "hyper-http-engine",
+    "ecosystem": "crates",
+    "versions": [
+      {
+        "version": "1.4.1",
+        "releaseDate": "2024-11-19",
+        "dependsOn": ["tokio-async-runtime@1.38.0", "ring-crypto-safe@0.17.5"],
+        "maintainer": "heidi.rust@crates.io",
+        "license": "MIT",
+        "vulnerabilities": [
+          {
+            "cveId": "CVE-2024-90210",
+            "severity": "HIGH",
+            "description": "HTTP/2 CONTINUATION frame flood leads to infinite CPU consumption."
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "serde-json-fast",
+    "ecosystem": "crates",
+    "versions": [
+      {
+        "version": "1.0.118",
+        "releaseDate": "2024-06-25",
+        "dependsOn": [],
+        "maintainer": "bob.builder@oss.org",
+        "license": "Apache-2.0",
+        "vulnerabilities": []
+      }
+    ]
+  },
+  {
+    "name": "axum-web-core",
+    "ecosystem": "crates",
+    "versions": [
+      {
+        "version": "0.7.5",
+        "releaseDate": "2024-12-10",
+        "dependsOn": ["hyper-http-engine@1.4.1", "serde-json-fast@1.0.118", "tokio-async-runtime@1.38.0"],
+        "maintainer": "heidi.rust@crates.io",
+        "license": "MIT",
+        "vulnerabilities": []
+      }
+    ]
+  },
+  {
+    "name": "reqwest-client-rs",
+    "ecosystem": "crates",
+    "versions": [
+      {
+        "version": "0.12.4",
+        "releaseDate": "2024-09-20",
+        "dependsOn": ["hyper-http-engine@1.4.1", "ring-crypto-safe@0.17.5"],
+        "maintainer": "heidi.rust@crates.io",
+        "license": "Apache-2.0",
+        "vulnerabilities": []
+      }
+    ]
+  },
+  {
+    "name": "tracing-subscriber-fmt",
+    "ecosystem": "crates",
+    "versions": [
+      {
+        "version": "0.3.18",
+        "releaseDate": "2024-04-14",
+        "dependsOn": ["serde-json-fast@1.0.118"],
+        "maintainer": "heidi.rust@crates.io",
+        "license": "MIT",
+        "vulnerabilities": []
+      }
+    ]
+  },
+  {
+    "name": "rust-microservice-node",
+    "ecosystem": "crates",
+    "versions": [
+      {
+        "version": "1.0.0",
+        "releaseDate": "2025-01-22",
+        "dependsOn": ["axum-web-core@0.7.5", "tracing-subscriber-fmt@0.3.18", "reqwest-client-rs@0.12.4"],
+        "maintainer": "eve.infra@cloud.io",
+        "license": "MIT",
+        "vulnerabilities": []
+      }
+    ]
+  },
+  {
+    "name": "cache-redis-cluster",
+    "ecosystem": "npm",
+    "versions": [
+      {
+        "version": "1.8.0",
+        "releaseDate": "2024-07-29",
+        "dependsOn": ["event-emitter-fast@2.0.1", "fast-deep-equal@3.1.3"],
+        "maintainer": "ivan.perf@fastops.net",
+        "license": "MIT",
+        "vulnerabilities": []
+      }
+    ]
+  },
+  {
+    "name": "distributed-lock-manager",
+    "ecosystem": "npm",
+    "versions": [
+      {
+        "version": "2.1.0",
+        "releaseDate": "2024-10-09",
+        "dependsOn": ["cache-redis-cluster@1.8.0", "crypto-primitives@2.0.0"],
+        "maintainer": "ivan.perf@fastops.net",
+        "license": "MIT",
+        "vulnerabilities": []
+      }
+    ]
+  },
+  {
+    "name": "metrics-prometheus-exporter",
+    "ecosystem": "npm",
+    "versions": [
+      {
+        "version": "1.4.3",
+        "releaseDate": "2024-08-14",
+        "dependsOn": ["event-emitter-fast@2.0.1", "string-trim-regex@1.2.0"],
+        "maintainer": "dave.maintainer@npm.org",
+        "license": "Apache-2.0",
+        "vulnerabilities": []
+      }
+    ]
+  },
+  {
+    "name": "grpc-gateway-service",
+    "ecosystem": "npm",
+    "versions": [
+      {
+        "version": "2.2.0",
+        "releaseDate": "2024-11-30",
+        "dependsOn": ["buffer-safe@0.9.2", "fast-deep-equal@3.1.3", "jwt-authenticator@3.4.0"],
+        "maintainer": "eve.infra@cloud.io",
+        "license": "Apache-2.0",
+        "vulnerabilities": []
+      }
+    ]
+  },
+  {
+    "name": "kafka-event-streamer",
+    "ecosystem": "npm",
+    "versions": [
+      {
+        "version": "3.0.1",
+        "releaseDate": "2025-01-04",
+        "dependsOn": ["buffer-safe@0.9.2", "event-emitter-fast@2.0.1", "logger-winston-mini@1.5.0"],
+        "maintainer": "ivan.perf@fastops.net",
+        "license": "Apache-2.0",
+        "vulnerabilities": []
+      }
+    ]
+  },
+  {
+    "name": "fraud-detection-pipeline",
+    "ecosystem": "npm",
+    "versions": [
+      {
+        "version": "1.2.0",
+        "releaseDate": "2025-02-05",
+        "dependsOn": ["kafka-event-streamer@3.0.1", "distributed-lock-manager@2.1.0", "payment-checkout-service@1.9.0"],
+        "maintainer": "alice.dev@security.io",
+        "license": "Proprietary",
+        "vulnerabilities": []
+      }
+    ]
+  },
+  {
+    "name": "email-smtp-relay",
+    "ecosystem": "npm",
+    "versions": [
+      {
+        "version": "2.0.2",
+        "releaseDate": "2024-06-20",
+        "dependsOn": ["crypto-primitives@2.0.0", "buffer-safe@0.9.2"],
+        "maintainer": "bob.builder@oss.org",
+        "license": "MIT",
+        "vulnerabilities": [
+          {
+            "cveId": "CVE-2024-41190",
+            "severity": "MEDIUM",
+            "description": "CRLF header injection in SMTP message envelope construction."
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "user-onboarding-service",
+    "ecosystem": "npm",
+    "versions": [
+      {
+        "version": "1.1.0",
+        "releaseDate": "2025-01-16",
+        "dependsOn": ["auth-middleware@2.2.0", "email-smtp-relay@2.0.2", "orm-adapter-node@2.4.0"],
+        "maintainer": "frank.security@infosec.com",
+        "license": "MIT",
+        "vulnerabilities": []
+      }
+    ]
+  },
+  {
+    "name": "cms-content-api",
+    "ecosystem": "npm",
+    "versions": [
+      {
+        "version": "2.5.0",
+        "releaseDate": "2024-12-28",
+        "dependsOn": ["multipart-form-parser@2.3.0", "orm-adapter-node@2.4.0", "json-schema-validator@2.2.0"],
+        "maintainer": "dave.maintainer@npm.org",
+        "license": "MIT",
+        "vulnerabilities": []
+      }
+    ]
+  },
+  {
+    "name": "e-commerce-storefront",
+    "ecosystem": "npm",
+    "versions": [
+      {
+        "version": "3.4.0",
+        "releaseDate": "2025-02-12",
+        "dependsOn": ["next-ssr-server@4.2.0", "payment-checkout-service@1.9.0", "cms-content-api@2.5.0"],
+        "maintainer": "alice.dev@security.io",
+        "license": "MIT",
+        "vulnerabilities": []
+      }
+    ]
+  },
+  {
+    "name": "log-aggregator-fluent",
+    "ecosystem": "npm",
+    "versions": [
+      {
+        "version": "1.6.0",
+        "releaseDate": "2024-09-29",
+        "dependsOn": ["logger-winston-mini@1.5.0", "event-emitter-fast@2.0.1", "metrics-prometheus-exporter@1.4.3"],
+        "maintainer": "eve.infra@cloud.io",
+        "license": "Apache-2.0",
+        "vulnerabilities": []
+      }
+    ]
+  },
+  {
+    "name": "secrets-vault-connector",
+    "ecosystem": "npm",
+    "versions": [
+      {
+        "version": "2.0.1",
+        "releaseDate": "2024-10-31",
+        "dependsOn": ["crypto-primitives@2.0.0", "http-fetch-lite@2.1.0"],
+        "maintainer": "carol.crypto@secops.dev",
+        "license": "Apache-2.0",
+        "vulnerabilities": []
+      }
+    ]
+  },
+  {
+    "name": "k8s-pod-autoscaler",
+    "ecosystem": "npm",
+    "versions": [
+      {
+        "version": "1.3.0",
+        "releaseDate": "2025-01-07",
+        "dependsOn": ["metrics-prometheus-exporter@1.4.3", "yaml-config-loader@1.8.0"],
+        "maintainer": "eve.infra@cloud.io",
+        "license": "Apache-2.0",
+        "vulnerabilities": []
+      }
+    ]
+  }
+]

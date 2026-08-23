@@ -1,0 +1,25 @@
+{
+  "name": "cognodb-dependency-explorer",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Graph-native software supply chain dependency and vulnerability explorer built on CognoDB.",
+  "scripts": {
+    "seed": "npm run seed --prefix backend",
+    "backend": "npm start --prefix backend",
+    "frontend": "npm run dev --prefix frontend",
+    "build": "npm run build --prefix frontend",
+    "pdf": "node backend/generate_pdf.js"
+  },
+  "keywords": [
+    "cognodb",
+    "graph-database",
+    "opencypher",
+    "neo4j",
+    "supply-chain-security",
+    "cve-explorer",
+    "react",
+    "express"
+  ],
+  "author": "Ansh Motghare",
+  "license": "MIT"
+}
