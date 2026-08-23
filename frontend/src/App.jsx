@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { Sidebar, TopHeader, MobileBottomNav } from './components/Navbar.jsx';
 import CommandPalette from './components/CommandPalette.jsx';
+import ScrollToTop from './components/ScrollToTop.jsx';
 import Home from './pages/Home.jsx';
 import PackagePage from './pages/PackagePage.jsx';
 import VulnerabilityExplorer from './pages/VulnerabilityExplorer.jsx';
@@ -26,6 +27,7 @@ export default function App() {
 
   return (
     <BrowserRouter>
+      <ScrollToTop />
       <div className="app-shell">
         <Sidebar onOpenPalette={() => setIsPaletteOpen(true)} />
         <div className="main-viewport">
