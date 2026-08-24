@@ -6,7 +6,7 @@ An advanced, production-grade graph database application built on **CognoDB** (N
 
 ## 🏆 Project Highlights & Engineering Standards
 
-- **React Doctor Score**: **100 / 100 Great** (`✔ No issues found!` across all 38 frontend components).
+- **React Doctor Score**: **100 / 100 Great** (`✔ No issues found!` across all 39 frontend components).
 - **Production Build**: Vite production compile in **< 3s with 0 errors**.
 - **Real-World Graph Dataset**: 75 packages across npm, PyPI, and crates, 77 version nodes, 10 maintainers, 17 CVEs (6 Critical, 7 High, 4 Medium), and 153 directed dependency edges spanning up to 4 hops.
 - **In-Browser openCypher IDE Console (`/cypher`)**: Interactive query runner with live millisecond telemetry over Bolt.
@@ -80,7 +80,6 @@ cognodb-dependency-explorer/
 │   ├── seed/
 │   │   ├── data/packages.json         # 75 realistic packages with multi-tier CVE chains
 │   │   └── seed.js                    # Parameterized Cypher loader with indexes & constraints
-│   ├── generate_pdf.js                # 19-page master PDF dossier generator
 │   └── package.json
 ├── frontend/
 │   ├── src/
@@ -107,9 +106,7 @@ cognodb-dependency-explorer/
 │   ├── index.html                     # HTML5 shell with custom favicon.svg
 │   ├── package.json
 │   └── vite.config.js
-└── docs/
-    ├── CognoDB_Project_Comprehensive_Guide.pdf # 19-page master PDF blueprint
-    └── COGNODB_PROJECT_MASTER_DOSSIER.md       # Markdown master dossier
+└── package.json
 ```
 
 ---
@@ -170,10 +167,3 @@ React Doctor — cognodb-dependency-explorer-frontend
 Score: 100 / 100 Great
 ✔ No issues found!
 ```
-
----
-
-## 7. Submission Dossier & Documentation
-
-- **19-Page Master PDF Guide**: [`docs/CognoDB_Project_Comprehensive_Guide.pdf`](docs/CognoDB_Project_Comprehensive_Guide.pdf)
-- **Comprehensive Markdown Blueprint**: [`docs/COGNODB_PROJECT_MASTER_DOSSIER.md`](docs/COGNODB_PROJECT_MASTER_DOSSIER.md)

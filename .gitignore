@@ -22,6 +22,10 @@ yarn-debug.log*
 yarn-error.log*
 *.log
 
+# Personal Documentation & PDF
+docs/
+*.pdf
+
 # Editor & OS files
 .DS_Store
 Thumbs.db
